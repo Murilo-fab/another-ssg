@@ -22,4 +22,7 @@ dependencies = [
 ]
 
 [project.scripts]
-another-ssg = "another_ssg:main"
+another-ssg = "main:main"
+
+[tool.setuptools]
+py-modules = ["main"]
