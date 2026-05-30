@@ -80,13 +80,13 @@ Any text below the three dashes acts as internal documentation.
 
 ### Markdown Post Front-Matter
 
-Every markdown note under `content/` must strictly include `title`, `category`, and `date`. The `toc` field is optional.
+Every markdown note under `content/` must strictly include `title`, `category`, and `date`. The `toc` field is optional. You can set it to false to remove the table of contents or erase it from the Front-Matter to enable it.
 
 ```markdown
 title: Advanced Quantum Mechanics
 category: Physics
 date: 2026-05-29
-toc: true
+toc: false
 ---
 # Quantum Note Header
 Your markdown text, equations like $E = mc^2$, or charts go here.
