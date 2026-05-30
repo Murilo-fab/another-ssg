@@ -1,0 +1,17 @@
+venv/
+bin/
+lib/
+develop-eggs/
+*.egg-info/
+*.egg
+
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+content/
+output/
+dist/
+
+.vscode/

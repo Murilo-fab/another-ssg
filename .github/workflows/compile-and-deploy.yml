@@ -1,0 +1,35 @@
+name: Reusable SSG Deploy Engine
+
+on:
+  workflow_call:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout blog content
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install SSG engine
+        run: |
+          python -m pip install --upgrade pip==24.0
+          pip install git+https://github.com/Murilo-fab/another-ssg.git
+
+      - name: Build blog
+        run: another-ssg
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'output'
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

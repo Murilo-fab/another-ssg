@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | {{ blog_name }}</title>
+    <meta name="description" content="{{ description }}">
+    
+    <link rel="icon" type="image/svg+xml" href="{{ root_path }}assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ root_path }}style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="{{ root_path }}index.html">🏠 Home</a>
+            <a href="{{ root_path }}about.html">🌱 About</a>
+            <a href="{{ root_path }}notes.html">📚 Notes</a>
+        </nav>
+    </header>
+    
+    <div class="layout-container {{ layout_class }}">
+        <aside>
+            {{ toc }}
+        </aside>
+
+        <main>
+            {{ content }}
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>{{ footer_text }} <strong>{{ author }}</strong></p>
+            <p class="contact">📧 <a href="mailto:{{ email }}">{{ email }}</a></p>
+            <p><a href="{{ social_link }}" target="_blank" rel="noopener">🌐 {{ social }}</a></p>
+        </div>
+    </footer>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        
+        mermaid.initialize({ 
+            startOnLoad: false,
+            theme: 'dark'
+        });
+
+        // Seletor resiliente que funciona mesmo se o CodeHilite/Pygments envelopar o bloco
+        const targetBlocks = document.querySelectorAll('pre code.language-mermaid, .codehilite pre code.language-mermaid, .codehilite .language-mermaid');
+        
+        targetBlocks.forEach((element) => {
+            const container = element.closest('pre') || element;
+            const div = document.createElement('div');
+            div.className = 'mermaid';
+            div.textContent = element.textContent;
+            container.replaceWith(div);
+        });
+
+        await mermaid.run();
+    </script>
+</body>
+</html>
