@@ -93,8 +93,10 @@ def build_pages(content_dir, output_dir, boilerplate, config):
             title = metadata["title"][0]
             category = metadata["category"][0]
             publication_date = metadata["date"][0]
-            
-            html_toc = metadata.get("toc", [html_toc])[0]
+            toc_status = metadata.get("toc", [""])[0]
+
+            if str(toc_status).lower() == "false":
+                html_toc = ""
 
             if category not in notes_index:
                 notes_index[category] = []
