@@ -118,8 +118,6 @@ def build_pages(content_dir, output_dir, boilerplate, config):
     return notes_index
 
 def build_index(notes_index, boilerplate, output_dir, config):
-    html_notes = "<h1>Notes</h1>"
-
     if not notes_index:
         html_notes += "<p>Nothing to see here.</p>"
     else:
